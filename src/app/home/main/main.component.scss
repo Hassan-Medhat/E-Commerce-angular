@@ -1,0 +1,38 @@
+.content {
+    margin: 40px;
+    background-color: #fff;
+    p {
+        padding: 15px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    a {
+        text-decoration: none;
+        img {
+            height: 200px;
+            padding: 0 10px;
+        }
+        p {
+            height: 75px;
+            overflow: hidden;
+            font-size: 16px;
+            font-weight: 100;
+            padding: 3px 15px;
+            color: #000;
+            &:hover {
+                color: red;
+            }
+      }
+
+      .price {
+        margin: 0 15px;
+        font-size: 20px;
+        color: #000;
+        .currency {
+            position: relative;
+            top: -5px;
+            font-size: 12px;
+        }
+    }
+    }
+}

@@ -1,0 +1,6 @@
+<label  class="my-1">{{title}}</label>
+            <ul>
+                <li *ngFor="let option of data">
+                    <input type="checkbox"  (change)="changes($event)" value="{{option}}">{{option}}
+                </li>
+            </ul>

@@ -1,0 +1,82 @@
+<div class="content">
+    <p>Products</p>
+    <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let product of tech">
+          <ng-template carouselSlide>
+              <a  [routerLink]="['/details' , product.id]" target="_blank">
+                  <img [src]="product.thumbnail" [alt]="product.title">
+                  <p>{{product.description}}</p>
+                  <span class="price">
+                      <span class="currency">$</span>
+                      {{product.price}}
+                  </span>
+              </a>
+          </ng-template>
+        </ng-container>
+    
+    </owl-carousel-o>
+</div>
+
+<div class="content">
+    <p>Personal Care</p>
+    <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let product of personalCare">
+          <ng-template carouselSlide>
+              <a  [routerLink]="['/details' , product.id]" target="_blank">
+                  <img [src]="product.thumbnail" [alt]="product.title">
+                  <p>{{product.description}}</p>
+                  <span class="price">
+                      <span class="currency">$</span>
+                      {{product.price}}
+                  </span>
+              </a>
+          </ng-template>
+        </ng-container>
+    
+    </owl-carousel-o>
+</div>
+
+
+<div class="content">
+    <p>Furniture</p>
+    <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let product of furniture">
+          <ng-template carouselSlide>
+              <a  [routerLink]="['/details' , product.id]" target="_blank">
+                  <img [src]="product.thumbnail" [alt]="product.title">
+                  <p>{{product.description}}</p>
+                  <span class="price">
+                      <span class="currency">$</span>
+                      {{product.price}}
+                  </span>
+              </a>
+          </ng-template>
+        </ng-container>
+    
+    </owl-carousel-o>
+</div>
+
+
+
+<div class="content">
+    <p>Sunglasses</p>
+    <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let product of sunglasses">
+          <ng-template carouselSlide>
+              <a  [routerLink]="['/details' , product.id]" target="_blank">
+                  <img [src]="product.thumbnail" [alt]="product.title">
+                  <p>{{product.description}}</p>
+                  <span class="price">
+                      <span class="currency">$</span>
+                      {{product.price}}
+                  </span>
+              </a>
+          </ng-template>
+        </ng-container>
+    
+    </owl-carousel-o>
+</div>

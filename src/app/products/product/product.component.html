@@ -1,0 +1,20 @@
+<div class="item">
+    <a [routerLink]="['/details' , data.id]" class="text-decoration-none" target="_blank">
+        <img src={{data.thumbnail}} alt="{{data.title}}">
+        <div class="body mb-3">
+            <p>{{data.description}}</p>
+            <span class="price">
+                <span class="currency">$</span>
+                {{roundRating(data.price)}}
+            </span>
+        </div>
+    </a>
+
+    <div class="px-3 mb-2">
+        <button class="buton" *ngIf="!addButton" (click)="addButton = true">Add To Cart</button>
+        <div class="d-flex" *ngIf="addButton">
+            <input type="number" min="0" class="form-control" [(ngModel)]="amount">
+            <button class="butn" (click)="add();addButton = false">Add</button>
+        </div>
+    </div>
+</div>

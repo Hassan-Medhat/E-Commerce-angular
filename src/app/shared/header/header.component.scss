@@ -1,0 +1,27 @@
+nav {
+    background-color: #010536;
+
+    img {
+        height: 80px;
+        width: 150px;
+    }
+
+    li {
+        .sty {
+            color: #fff;
+            padding: 10px 25px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .router-link-active {
+            color: yellow;
+        }
+    }
+
+
+    .navbar-toggler-icon {
+        background-color: #fff;
+    }
+
+    
+}
