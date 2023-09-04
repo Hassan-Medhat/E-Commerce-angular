@@ -1,5 +1,5 @@
 <div class="content">
-    <p>Products</p>
+    <p>Electronics</p>
     <owl-carousel-o [options]="customOptions">
 
       <ng-container *ngFor="let product of tech">
@@ -40,10 +40,10 @@
 
 
 <div class="content">
-    <p>Furniture</p>
+    <p>Homedecoration</p>
     <owl-carousel-o [options]="customOptions">
 
-      <ng-container *ngFor="let product of furniture">
+      <ng-container *ngFor="let product of homeDecoration">
           <ng-template carouselSlide>
               <a  [routerLink]="['/details' , product.id]" target="_blank">
                   <img [src]="product.thumbnail" [alt]="product.title">
@@ -62,10 +62,32 @@
 
 
 <div class="content">
-    <p>Sunglasses</p>
+    <p>Women's fashion</p>
     <owl-carousel-o [options]="customOptions">
 
-      <ng-container *ngFor="let product of sunglasses">
+      <ng-container *ngFor="let product of women">
+          <ng-template carouselSlide>
+              <a  [routerLink]="['/details' , product.id]" target="_blank">
+                  <img [src]="product.thumbnail" [alt]="product.title">
+                  <p>{{product.description}}</p>
+                  <span class="price">
+                      <span class="currency">$</span>
+                      {{product.price}}
+                  </span>
+              </a>
+          </ng-template>
+        </ng-container>
+    
+    </owl-carousel-o>
+</div>
+
+
+
+<div class="content">
+    <p>Men's fashion</p>
+    <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let product of men">
           <ng-template carouselSlide>
               <a  [routerLink]="['/details' , product.id]" target="_blank">
                   <img [src]="product.thumbnail" [alt]="product.title">

@@ -1,7 +1,9 @@
 import { Component , OnInit , OnDestroy } from '@angular/core';
-import { ProductsService } from '../products.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Subscription } from 'rxjs';
+import { Subscription, forkJoin } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+
 
 
 
@@ -49,49 +51,72 @@ export class MainComponent  implements OnInit , OnDestroy {
   }
 
   
-  tech:any [] =[];
-  personalCare:any [] = [];
-  furniture:any [] = [] ;
-  sunglasses:any [] =[] ;
+  tech: any;
+  personalCare:any;
+  homeDecoration:any;
+  women:any;
+  men:any;
 
-  subscription1: Subscription = new Subscription;
-  subscription2: Subscription = new Subscription;
-  subscription3: Subscription = new Subscription;
-  subscription4: Subscription = new Subscription;
 
-  constructor(private productsService:ProductsService) { }
+
+  subscription1: Subscription;
+  subscription2: Subscription;
+  subscription3: Subscription;
+  subscription4: Subscription;
+  subscription5: Subscription;
+
+  constructor(private httpClient:HttpClient) { }
 
 
   ngOnInit(): void {
     this.getTech(); 
-    this.getPersonalCare();   
+    this.getPersonalCare(); 
     this.getFurniture();   
-    this.getSunglasses();   
+    this.getWomen();   
+    this.getMen();   
   }
 
   getTech() {
-    this.subscription1 = this.productsService.getTech().subscribe((data) => {
-      this.tech = data.products.slice(0,10);
-    });
+    this.subscription1 = forkJoin([this.httpClient.get(`https://dummyjson.com/products/category/smartphones`)
+     ,this.httpClient.get(`https://dummyjson.com/products/category/laptops`) ]).subscribe((data: any) => {
+      this.tech = data[0].products.concat(data[1].products);
+     })
   }
 
   getPersonalCare() {
-    this.subscription2 =  this.productsService.getPersonalCare().subscribe((data) => {
-      this.personalCare = data.products.slice(10,20);
-    });
+    this.subscription2 = forkJoin([this.httpClient.get(`https://dummyjson.com/products/category/fragrances`)
+     ,this.httpClient.get(`https://dummyjson.com/products/category/skincare`) ]).subscribe((data: any) => {
+      this.personalCare = data[0].products.concat(data[1].products);
+     })
   }
 
   getFurniture() {
-    this.subscription3 = this.productsService.getFurniture().subscribe((data) => {
-      this.furniture = data.products;
-    })
+    this.subscription3 = forkJoin([this.httpClient.get(`https://dummyjson.com/products/category/home-decoration`)
+     ,this.httpClient.get(`https://dummyjson.com/products/category/furniture`) ,
+     this.httpClient.get(`https://dummyjson.com/products/category/lighting`) ]).subscribe((data: any) => {
+      this.homeDecoration = data[0].products.concat(data[1].products.concat(data[2].products));
+      
+     })
   }
 
 
-  getSunglasses() {
-    this.subscription4 = this.productsService.getSunglasses().subscribe((data) => {
-      this.sunglasses = data.products;
-    })
+  getWomen() {
+    this.subscription4 = forkJoin([this.httpClient.get(`https://dummyjson.com/products/category/womens-dresses`)
+     ,this.httpClient.get(`https://dummyjson.com/products/category/womens-jewellery`) ,
+     this.httpClient.get(`https://dummyjson.com/products/category/womens-bags`) ]).subscribe((data: any) => {
+      this.women = data[0].products.concat(data[1].products.concat(data[2].products));
+      
+     })
+  }
+
+
+  getMen() {
+    this.subscription5 = forkJoin([this.httpClient.get(`https://dummyjson.com/products/category/mens-shirts`)
+     ,this.httpClient.get(`https://dummyjson.com/products/category/mens-watches`) ,
+     this.httpClient.get(`https://dummyjson.com/products/category/sunglasses`) ]).subscribe((data: any) => {
+      this.men = data[0].products.concat(data[1].products.concat(data[2].products));
+      
+     })
   }
 
 
@@ -100,6 +125,7 @@ export class MainComponent  implements OnInit , OnDestroy {
       this.subscription2.unsubscribe();
       this.subscription3.unsubscribe();
       this.subscription4.unsubscribe();
+      this.subscription5.unsubscribe();
   }
 }
 

@@ -4,6 +4,9 @@ import { MainComponent } from './main/main.component';
 import { SharedModule } from '../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 
@@ -18,7 +21,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CommonModule,
     SharedModule,
     BrowserAnimationsModule,
-    CarouselModule
+    CarouselModule,
+    HttpClientModule
   ],
 })
 export class HomeModule { }

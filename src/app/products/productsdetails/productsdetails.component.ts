@@ -16,7 +16,7 @@ export class ProductsdetailsComponent implements OnInit , OnDestroy{
   data:any = {};
   id:any
   loading:boolean = false;
-  subscription: Subscription = new Subscription;
+  subscription: Subscription;
 
   constructor(private activatedRoute:ActivatedRoute , private productsService:ProductsService){
     this.id = this.activatedRoute.snapshot.paramMap.get("id")
