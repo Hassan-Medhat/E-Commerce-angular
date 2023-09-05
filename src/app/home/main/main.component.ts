@@ -59,11 +59,11 @@ export class MainComponent  implements OnInit , OnDestroy {
 
 
 
-  subscription1: Subscription;
-  subscription2: Subscription;
-  subscription3: Subscription;
-  subscription4: Subscription;
-  subscription5: Subscription;
+  subscription1: Subscription = new Subscription;
+  subscription2: Subscription = new Subscription;
+  subscription3: Subscription = new Subscription;
+  subscription4: Subscription = new Subscription;
+  subscription5: Subscription = new Subscription;
 
   constructor(private httpClient:HttpClient) { }
 

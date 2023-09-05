@@ -16,9 +16,9 @@ export class AllproductsComponent implements OnInit  , OnDestroy{
   loading:boolean = false;
   cartProducts:any[] = [];
 
-  subscription1: Subscription;
-  subscription2: Subscription;
-  subscription3: Subscription;
+  subscription1: Subscription = new Subscription;
+  subscription2: Subscription = new Subscription;
+  subscription3: Subscription = new Subscription;
 
 
 constructor(private productsService:ProductsService) {
