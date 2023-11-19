@@ -1,7 +1,8 @@
-import { Component , OnInit , OnDestroy } from '@angular/core';
+import { Component , OnInit  } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Subscription, forkJoin } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { take } from 'rxjs/operators';
+import { HomeService } from '../home.service';
+
 
 
 
@@ -13,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent  implements OnInit , OnDestroy {
+export class MainComponent  implements OnInit  {
 
   customOptions: OwlOptions = {
     loop: true,
@@ -21,9 +22,9 @@ export class MainComponent  implements OnInit , OnDestroy {
     touchDrag: false,
     pullDrag: false,
     dots: true,
-    autoWidth: false,
+    autoWidth: true,
     navSpeed: 700,
-    autoplay: true,
+    // autoplay: true,
     autoplayTimeout: 3000,
     autoplayHoverPause: true,
     autoplaySpeed: 2000,
@@ -59,73 +60,50 @@ export class MainComponent  implements OnInit , OnDestroy {
 
 
 
-  subscription1: Subscription = new Subscription;
-  subscription2: Subscription = new Subscription;
-  subscription3: Subscription = new Subscription;
-  subscription4: Subscription = new Subscription;
-  subscription5: Subscription = new Subscription;
+  
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private homeService:HomeService) { }
 
 
   ngOnInit(): void {
     this.getTech(); 
-    this.getPersonalCare(); 
+    this.getPersonalCare();  
     this.getFurniture();   
     this.getWomen();   
     this.getMen();   
   }
 
   getTech() {
-    this.subscription1 = forkJoin([this.httpClient.get(`https://dummyjson.com/products/category/smartphones`)
-     ,this.httpClient.get(`https://dummyjson.com/products/category/laptops`) ]).subscribe((data: any) => {
+    this.homeService.getTech().pipe(take(1)).subscribe((data :any) => {
       this.tech = data[0].products.concat(data[1].products);
-     })
+    })
   }
 
   getPersonalCare() {
-    this.subscription2 = forkJoin([this.httpClient.get(`https://dummyjson.com/products/category/fragrances`)
-     ,this.httpClient.get(`https://dummyjson.com/products/category/skincare`) ]).subscribe((data: any) => {
+    this.homeService.getPersonalCare().pipe(take(1)).subscribe((data :any) => {
       this.personalCare = data[0].products.concat(data[1].products);
-     })
+    })
   }
 
   getFurniture() {
-    this.subscription3 = forkJoin([this.httpClient.get(`https://dummyjson.com/products/category/home-decoration`)
-     ,this.httpClient.get(`https://dummyjson.com/products/category/furniture`) ,
-     this.httpClient.get(`https://dummyjson.com/products/category/lighting`) ]).subscribe((data: any) => {
+    this.homeService.getFurniture().pipe(take(1)).subscribe((data :any) => {
       this.homeDecoration = data[0].products.concat(data[1].products.concat(data[2].products));
-      
-     })
+    })
   }
 
 
   getWomen() {
-    this.subscription4 = forkJoin([this.httpClient.get(`https://dummyjson.com/products/category/womens-dresses`)
-     ,this.httpClient.get(`https://dummyjson.com/products/category/womens-jewellery`) ,
-     this.httpClient.get(`https://dummyjson.com/products/category/womens-bags`) ]).subscribe((data: any) => {
+    this.homeService.getWomen().pipe(take(1)).subscribe((data :any) => {
       this.women = data[0].products.concat(data[1].products.concat(data[2].products));
-      
-     })
+    })
   }
 
 
   getMen() {
-    this.subscription5 = forkJoin([this.httpClient.get(`https://dummyjson.com/products/category/mens-shirts`)
-     ,this.httpClient.get(`https://dummyjson.com/products/category/mens-watches`) ,
-     this.httpClient.get(`https://dummyjson.com/products/category/sunglasses`) ]).subscribe((data: any) => {
+    this.homeService.getMen().pipe(take(1)).subscribe((data :any) => {
       this.men = data[0].products.concat(data[1].products.concat(data[2].products));
-      
-     })
+    })
   }
 
-
-  ngOnDestroy(): void {
-      this.subscription1.unsubscribe();
-      this.subscription2.unsubscribe();
-      this.subscription3.unsubscribe();
-      this.subscription4.unsubscribe();
-      this.subscription5.unsubscribe();
-  }
 }
 
