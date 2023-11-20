@@ -87,21 +87,22 @@ export class MainComponent  implements OnInit  {
 
   getFurniture() {
     this.homeService.getFurniture().pipe(take(1)).subscribe((data :any) => {
-      this.homeDecoration = data[0].products.concat(data[1].products.concat(data[2].products));
+      this.homeDecoration = data[0].products.concat(data[1].products , data[2].products);
+      
     })
   }
 
 
   getWomen() {
     this.homeService.getWomen().pipe(take(1)).subscribe((data :any) => {
-      this.women = data[0].products.concat(data[1].products.concat(data[2].products));
+      this.women = data[0].products.concat(data[1].products , data[2].products);
     })
   }
 
 
   getMen() {
     this.homeService.getMen().pipe(take(1)).subscribe((data :any) => {
-      this.men = data[0].products.concat(data[1].products.concat(data[2].products));
+      this.men = data[0].products.concat(data[1].products , data[2].products);
     })
   }
 
